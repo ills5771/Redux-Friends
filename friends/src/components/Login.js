@@ -17,13 +17,15 @@ class Login extends React.Component {
   };
   login = ev => {
     ev.preventDefault();
+
     this.props.login(this.state).then(() => {
-      // this.props.history.push('/protected');
+      this.props.history.push("/friends-list");
     });
   };
   render() {
     return (
       <form
+        onSubmit={this.login}
         style={{
           margin: "20% 25%",
           width: "400px",
@@ -58,7 +60,9 @@ class Login extends React.Component {
           onChange={this.handleChange}
           value={this.state.password}
         />
-        <Button variant="contained">Login</Button>
+        <Button type="submit" variant="contained">
+          Login
+        </Button>
       </form>
     );
   }

@@ -28,14 +28,14 @@ function FriendsList(props) {
           style={{ display: "flex", justifyContent: "space-evenly" }}
         >
           <Button
-            onClick={ev => props.deleteFriend(ev, props.id)}
+            // onClick={ev => props.deleteFriend(ev, props.id)}
             size="large"
             color="secondary"
           >
             Delete
           </Button>
           <Button
-            onClick={ev => props.updateForm(ev, props.id)}
+            // onClick={ev => props.updateForm(ev, props.id)}
             size="large"
             color="primary"
           >

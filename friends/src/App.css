@@ -33,3 +33,20 @@
   font-size: 16px;
   width: 400px;
 }
+ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 12px;
+}
+
+li {
+  list-style: none;
+  margin-right: 6px;
+}
+
+a {
+  text-decoration: none;
+  padding: 6px;
+  color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+}
