@@ -2,8 +2,9 @@ import React from "react";
 
 export default function FriendForm(props) {
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="friend-form" onSubmit={handleSubmit}>
       <input
+        className="friend-form-input"
         type="text"
         placeholder="Name"
         name="name"
@@ -11,6 +12,7 @@ export default function FriendForm(props) {
         onChange={props.onChange}
       />
       <input
+        className="friend-form-input"
         type="number"
         placeholder="Age"
         name="age"
@@ -18,6 +20,7 @@ export default function FriendForm(props) {
         onChange={props.onChange}
       />
       <input
+        className="friend-form-input"
         type="text"
         placeholder="Email"
         name="email"
@@ -25,6 +28,7 @@ export default function FriendForm(props) {
         onChange={props.onChange}
       />
       <input
+        className="friend-form-input"
         type="text"
         placeholder="Image Url"
         name="imgUrl"
