@@ -1,11 +1,24 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { connect } from "react-redux";
 
 class Login extends React.Component {
   state = {
     username: "",
     password: ""
+  };
+
+  handleChange = ev => {
+    this.setState({
+      [ev.target.name]: ev.target.value
+    });
+  };
+  login = ev => {
+    ev.preventDefault();
+    this.props.login(this.state).then(() => {
+      // this.props.history.push('/protected');
+    });
   };
   render() {
     return (
@@ -30,16 +43,26 @@ class Login extends React.Component {
           id="standard-with-placeholder"
           label="username"
           placeholder="username"
+          name="username"
           margin="normal"
+          onChange={this.handleChange}
+          value={this.state.username}
         />
         <TextField
           id="standard-with-placeholder"
           label="password"
           placeholder="password"
           margin="normal"
+          name="password"
+          onChange={this.handleChange}
+          value={this.state.password}
         />
         <Button variant="contained">Login</Button>
       </form>
     );
   }
 }
+export default connect(
+  null,
+  { login }
+)(Login);
