@@ -6,17 +6,45 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
-import { getFriends } from "../actions";
-import { GET_FRIENDS, GET_FRIENDS_SUCCESS } from "../actions";
+import { getFriends, addFriend } from "../actions";
+import FriendForm from "./FriendForm";
 
 class FriendsList extends React.Component {
+  state = {
+    name: "",
+    age: "",
+    email: "",
+    imgUrl: ""
+  };
   componentDidMount() {
     this.props.getFriends();
   }
-
+  handleChange = ev => {
+    this.setState({
+      [ev.target.name]: ev.target.value
+    });
+  };
+  addFriend = ev => {
+    const newFriend = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email,
+      imgUrl: this.state.imgUrl
+    };
+    ev.preventDefault();
+    this.props.addFriend(newFriend);
+  };
   render() {
     return (
       <div className="container">
+        <FriendForm
+          name={this.state.name}
+          age={this.state.age}
+          email={this.state.email}
+          imgUrl={this.state.imgUrl}
+          addFriend={this.addFriend}
+          handleChange={this.handleChange}
+        />
         {this.props.friends.map(friend => (
           <Card className="card">
             <CardActionArea>
@@ -68,8 +96,7 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {
-    GET_FRIENDS,
-    GET_FRIENDS_SUCCESS,
-    getFriends
+    getFriends,
+    addFriend
   }
 )(FriendsList);
