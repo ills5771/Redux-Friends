@@ -33,6 +33,12 @@ class FriendsList extends React.Component {
     };
     ev.preventDefault();
     this.props.addFriend(newFriend);
+    this.setState({
+      name: "",
+      age: "",
+      email: "",
+      imgUrl: ""
+    });
   };
   render() {
     return (
