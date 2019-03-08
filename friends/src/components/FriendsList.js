@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
-import { getFriends, addFriend } from "../actions";
+import { getFriends, addFriend, deleteFriend } from "../actions";
 import FriendForm from "./FriendForm";
 
 class FriendsList extends React.Component {
@@ -40,6 +40,10 @@ class FriendsList extends React.Component {
       imgUrl: ""
     });
   };
+  deleteFriend = (ev, id) => {
+    ev.preventDefault();
+    this.props.deleteFriend(id);
+  };
   render() {
     return (
       <div className="container">
@@ -70,7 +74,7 @@ class FriendsList extends React.Component {
               style={{ display: "flex", justifyContent: "space-evenly" }}
             >
               <Button
-                // onClick={ev => props.deleteFriend(ev, props.id)}
+                onClick={ev => this.deleteFriend(ev, friend.id)}
                 size="large"
                 color="secondary"
               >
@@ -103,6 +107,7 @@ export default connect(
   mapStateToProps,
   {
     getFriends,
-    addFriend
+    addFriend,
+    deleteFriend
   }
 )(FriendsList);
