@@ -6,6 +6,8 @@ export const GET_FRIENDS = "GET_FRIENDS";
 export const GET_FRIENDS_SUCCESS = "GET_FRIENDS_SUCCESS";
 export const ADDING_FRIEND = "ADDING_FRIEND";
 export const ADD_FRIEND_SUCCESS = "ADD_FRIEND_SUCCESS";
+export const DELETE_FRIEND = "DELETE_FRIEND";
+export const DELETE_FRIEND_SUCCESS = "DELETE_FRIEND_SUCCESS";
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
@@ -38,6 +40,20 @@ export const addFriend = friend => dispatch => {
     })
     .then(res => {
       dispatch({ type: ADD_FRIEND_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const deleteFriend = id => dispatch => {
+  dispatch({ type: DELETE_FRIEND });
+  axios
+    .delete(`http://localhost:5000/api/friends/${id}`, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(res => {
+      dispatch({ type: DELETE_FRIEND_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);
