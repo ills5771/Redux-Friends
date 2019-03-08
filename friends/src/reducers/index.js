@@ -3,7 +3,9 @@ import {
   GET_FRIENDS_SUCCESS,
   LOGIN_SUCCESS,
   ADDING_FRIEND,
-  ADD_FRIEND_SUCCESS
+  ADD_FRIEND_SUCCESS,
+  DELETE_FRIEND,
+  DELETE_FRIEND_SUCCESS
 } from "../actions";
 
 const initialState = {
@@ -13,6 +15,8 @@ const initialState = {
   friends: [],
   addingFriend: false,
   addFriendSuccess: false,
+  deleteFriend: false,
+  deleteFriendSuccess: false,
   error: null
 };
 
@@ -45,6 +49,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         addFriendSuccess: true,
+        friends: action.payload
+      };
+    case DELETE_FRIEND:
+      return {
+        ...state,
+        deleteFriend: true
+      };
+    case DELETE_FRIEND_SUCCESS:
+      return {
+        ...state,
+        deleteFriendSuccess: true,
         friends: action.payload
       };
 
